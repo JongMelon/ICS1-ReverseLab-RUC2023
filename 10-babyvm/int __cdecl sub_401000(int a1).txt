@@ -1,0 +1,74 @@
+int __cdecl sub_401000(int a1)
+{
+  int result; // eax
+  int v2; // [esp+8h] [ebp-4h]
+  int i = dword_403104; // 0
+  int j = dword_403108;
+  int k = dword_40310C; // 0
+  int g = dword_403110; // 0
+  int flag = dword_403114;
+
+  if ( dword_403060[i] == 204 )
+    j = 0;
+  ++i;
+  do
+  {
+    result = dword_403060[i];
+    v2 = result;
+    if ( result == 221 ) // 0xDD
+    {
+      ++k;
+    }
+    else if ( result <= 221 )
+    {
+      if ( result == 187 ) // 0xBB, i == 8
+      {
+        if ( !flag )
+          i = 0;
+      }
+      else if ( result <= 187 ) // 0xBB, i <= 8
+      {
+        if ( result <= 15 ) // 0xF, 1 <= i <= 6
+        {
+          if ( result >= 10 ) // 0xA, 1 <= i <= 6
+          {
+            result = dword_403060[i];
+            switch ( v2 )
+            {
+              case 10: // 0xA, i == 1
+                result = j + a1;
+                k = *(_DWORD *)(j + a1); // k = str[j];
+                break;
+              case 11: // 0xB, i == 2
+                g = k;
+                break;
+              case 12: // i == 3
+                result = (g + 2) ^ 0x16;
+                g = result;
+                break;
+              case 13: // i == 4
+                k = g;
+                break;
+              case 14: // i == 5
+                result = k;
+                *(_DWORD *)(j + a1) = k; // str[j] = k; str[j] = (str[j] + 2) ^ 0x16;
+                break;
+              case 15: // i == 6
+                ++j;
+                break;
+              default:
+                break;
+            }
+          }
+        }
+        else if ( result == 170 ) // i == 7
+        {
+          flag = j == 24;
+        }
+      }
+    }
+    ++i;
+  }
+  while ( i <= 8 );
+  return result;
+}

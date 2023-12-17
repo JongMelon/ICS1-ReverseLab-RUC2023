@@ -1,0 +1,27 @@
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int i; // [esp+0h] [ebp-4h]
+
+  puts("please input your flag:");
+  sub_4012A0("%30s", (char)Str);
+  if ( strlen(Str) == 24 )
+  {
+    sub_401000(Str);
+    for ( i = 0; i < 24; ++i )
+    {
+      if ( dword_403000[i] != Str[i] )
+      {
+        puts("failed!");
+        goto LABEL_9;
+      }
+    }
+    puts("success!");
+  }
+  else
+  {
+    puts("failed!");
+  }
+LABEL_9:
+  system("pause");
+  return 0;
+}
