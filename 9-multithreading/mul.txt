@@ -1,0 +1,24 @@
+int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int i; // eax
+  char v5; // [esp+0h] [ebp-14h]
+  HANDLE Handles[2]; // [esp+8h] [ebp-Ch] BYREF
+
+  sub_401020("plz input your flag:", v5);
+  sub_401050("%42s", (char)byte_40336C);
+  Handles[0] = CreateThread(0, 0, StartAddress, 0, 0, 0);
+  Handles[1] = CreateThread(0, 0, loc_401200, 0, 0, 0);
+  CreateThread(0, 0, sub_401240, 0, 0, 0);
+  WaitForMultipleObjects(2u, Handles, 1, 0xFFFFFFFF);
+  for ( i = 0; i < 42; ++i )
+  {
+    if ( byte_40336C[i] != byte_402150[i] )
+    {
+      sub_401020("error", (char)Handles[0]);
+      exit(0);
+    }
+  }
+  sub_401020("win", (char)Handles[0]);
+  getchar();
+  return 0;
+}

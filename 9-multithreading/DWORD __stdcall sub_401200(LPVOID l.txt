@@ -1,0 +1,12 @@
+DWORD __stdcall sub_401200(LPVOID lpThreadParameter)
+{
+  int v1; // eax
+  char v2; // bl
+
+  v1 = 0;
+  v2 = 100 * NtCurrentPeb()->BeingDebugged; // v2 = 0
+  do
+    byte_40336C[v1++] += v2;
+  while ( v1 < 42 );
+  return 0;
+}

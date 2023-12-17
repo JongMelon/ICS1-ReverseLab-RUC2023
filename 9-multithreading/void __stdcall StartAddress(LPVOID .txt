@@ -1,0 +1,30 @@
+DWORD __stdcall StartAddress(LPVOID lpThreadParameter)
+{
+  int v2; // [esp+4h] [ebp-18h]
+  int i; // [esp+18h] [ebp-4h]
+
+  CreateThread(0, 0, hHandle, 0, 0, 0);
+  WaitForSingleObject(hHandle, 0xFFFFFFFF);
+  for ( i = 0; i < 42; ++i )
+  {
+    byte_40336C[i] = (byte_40336C[i] << 6) ^ ((int)(unsigned __int8)byte_40336C[i] >> 2);
+    byte_40336C[i] ^= 0x23u;
+    Sleep(6u);
+    v2 += NtCurrentPeb()->BeingDebugged + 9;
+    byte_40336C[i] += 35;
+  }
+  return 0;
+}
+
+DWORD __stdcall sub_401200(LPVOID lpThreadParameter)
+{
+  int v1; // eax
+  char v2; // bl
+
+  v1 = 0;
+  v2 = 100 * NtCurrentPeb()->BeingDebugged; // v2 = 100
+  do
+    byte_40336C[v1++] += v2;
+  while ( v1 < 42 );
+  return 0;
+}

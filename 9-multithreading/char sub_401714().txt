@@ -1,0 +1,19 @@
+char sub_401714()
+{
+  PVOID StackBase; // edx
+  signed __int32 v1; // eax
+
+  if ( sub_401EAA() )
+  {
+    StackBase = NtCurrentTeb()->NtTib.StackBase;
+    while ( 1 )
+    {
+      v1 = _InterlockedCompareExchange(&dword_403338, (signed __int32)StackBase, 0);
+      if ( !v1 )
+        break;
+      if ( StackBase == (PVOID)v1 )
+        return 1;
+    }
+  }
+  return 0;
+}
